@@ -1,0 +1,94 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import NavLink from "./NavLink";
+import Logo from "../Icons/Logo";
+import Button from "../Button";
+import { Menu, X } from "lucide-react";
+
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Service", href: "/service" },
+  { name: "Portfolio", href: "/portfolio" },
+  { name: "Journey", href: "/journey" },
+  { name: "Contact", href: "/contact" },
+];
+
+export default function Header() {
+  const [isSticky, setIsSticky] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsSticky(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <header className="w-full flex justify-center mt-4 z-50 bg-white">
+      <div
+        className={`max-w-[928px] w-full flex items-center justify-between px-6 py-4 
+        bg-white rounded-[20px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] transition-all duration-300
+        ${isSticky ? "fixed top-4 left-1/2 -translate-x-1/2" : "relative"}
+        `}
+      >
+        <Link href="/">
+          <Logo />
+        </Link>
+
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <NavLink key={link.name} href={link.href}>
+              {link.name}
+            </NavLink>
+          ))}
+        </nav>
+
+        <Link href="/get-started" className="hidden md:block">
+          <Button
+            variant="primary"
+            size="sm"
+            className="!rounded-full !text-[0.95rem] font-medium p-[16px] w-[113px] h-[45px]"
+          >
+            Get Started
+          </Button>
+        </Link>
+
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden flex items-center justify-center w-10 h-10 rounded-full text-[#131927] hover:bg-gray-100 transition"
+        >
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {menuOpen && (
+        <div className="fixed top-[80px] left-0 w-full bg-white shadow-lg rounded-b-[20px] p-6 md:hidden transition-all duration-300">
+          <nav className="flex flex-col gap-4">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.name}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.name}
+              </NavLink>
+            ))}
+
+            <Link href="/get-started" onClick={() => setMenuOpen(false)}>
+              <Button
+                variant="primary"
+                size="sm"
+                className="!rounded-full w-full font-medium mt-4"
+              >
+                Get Started
+              </Button>
+            </Link>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+}
