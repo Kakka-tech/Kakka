@@ -7,10 +7,8 @@ import Logo from "../Icons/Logo";
 export default function Footer() {
   return (
     <footer className="w-full bg-white text-sm">
-      {/* Main Grid */}
       <div className="max-w-7xl mx-auto w-full px-6 sm:px-10 md:px-20 lg:px-32 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-10 lg:gap-x-10 text-center sm:text-left">
-          {/* Logo + Description */}
           <div className="flex flex-col items-center sm:items-start">
             <Link href="/" aria-label="Go to homepage" className="inline-block mb-2">
               <Logo className="w-24 h-auto" />
@@ -20,7 +18,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Company */}
           <div>
             <h3 className="font-semibold mb-3 text-gray-800 text-sm">Company</h3>
             <ul className="space-y-2 text-gray-600 text-sm">
@@ -31,7 +28,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
           <div>
             <h3 className="font-semibold mb-3 text-gray-800 text-sm">Services</h3>
             <ul className="space-y-2 text-gray-600 text-sm">
@@ -42,7 +38,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Connect */}
           <div>
             <h3 className="font-semibold mb-3 text-gray-800 text-sm">Connect</h3>
             <div className="flex justify-center sm:justify-start space-x-5 text-gray-700">
@@ -63,7 +58,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Line (Centered Border) */}
       <div className="flex justify-center">
         <div className="max-w-[928px] w-full text-center border-t border-[#4D5461]/40 py-4 text-[#4D5461] text-xs">
           © {new Date().getFullYear()}{" "}

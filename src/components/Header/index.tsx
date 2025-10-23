@@ -32,7 +32,7 @@ export default function Header() {
         className={`max-w-[928px] w-full flex items-center justify-between px-6 py-4 rounded-[20px]
         transition-all duration-300
         ${isSticky
-          ? "fixed top-4 left-1/2 -translate-x-1/2 backdrop-blur-sm bg-white/70 shadow-[0_4px_30px_rgba(0,0,0,0.1)] border border-white/20"
+          ? "z-[100] fixed top-4 left-1/2 -translate-x-1/2 backdrop-blur-sm bg-white/70 shadow-[0_4px_30px_rgba(0,0,0,0.1)] border border-white/20"
           : "relative bg-white shadow-[0_4px_30px_rgba(0,0,0,0.1)]"}
         `}
       >
@@ -40,7 +40,6 @@ export default function Header() {
           <Logo />
         </Link>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <NavLink key={link.name} href={link.href}>
@@ -49,7 +48,6 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* CTA Button */}
         <Link href="/get-started" className="hidden md:block">
           <Button
             variant="primary"
@@ -60,7 +58,6 @@ export default function Header() {
           </Button>
         </Link>
 
-        {/* Mobile Menu Toggle */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden flex items-center justify-center w-10 h-10 rounded-full text-[#131927] hover:bg-gray-100 transition"
@@ -69,7 +66,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {menuOpen && (
         <div className="fixed top-[80px] left-0 w-full bg-white/95 backdrop-blur-md shadow-lg rounded-b-[20px] p-6 md:hidden transition-all duration-300 z-[90]">
           <nav className="flex flex-col gap-4">
