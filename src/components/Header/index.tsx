@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import NavLink from "./NavLink";
 import Logo from "../Icons/Logo";
 import Button from "../Button";
@@ -19,6 +19,7 @@ const navLinks = [
 export default function Header() {
   const [isSticky, setIsSticky] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => setIsSticky(window.scrollY > 50);
@@ -31,14 +32,20 @@ export default function Header() {
       <div
         className={`max-w-[928px] w-full flex items-center justify-between px-6 py-4 rounded-[20px]
         transition-all duration-300
-        ${isSticky
-          ? "z-[100] fixed top-4 left-1/2 -translate-x-1/2 backdrop-blur-sm bg-white/70 shadow-[0_4px_30px_rgba(0,0,0,0.1)] border border-white/20"
-          : "relative bg-white shadow-[0_4px_30px_rgba(0,0,0,0.1)]"}
+        ${
+          isSticky
+            ? "z-[100] fixed top-4 left-1/2 -translate-x-1/2 backdrop-blur-sm bg-white/70 shadow-[0_4px_30px_rgba(0,0,0,0.1)] border border-white/20"
+            : "relative bg-white shadow-[0_4px_30px_rgba(0,0,0,0.1)]"
+        }
         `}
       >
-        <Link href="/" aria-label="Go to homepage">
+        <button
+          onClick={() => router.push("/")}
+          aria-label="Go to homepage"
+          className="cursor-pointer"
+        >
           <Logo />
-        </Link>
+        </button>
 
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
@@ -48,15 +55,14 @@ export default function Header() {
           ))}
         </nav>
 
-        <Link href="/get-started" className="hidden md:block">
-          <Button
-            variant="primary"
-            size="sm"
-            className="!rounded-full !text-[0.95rem] font-medium p-[16px] w-[113px] h-[45px]"
-          >
-            Get Started
-          </Button>
-        </Link>
+        <Button
+          variant="primary"
+          size="sm"
+          className="hidden md:block !rounded-full !text-[0.95rem] font-medium p-[16px] w-[113px] h-[45px]"
+          onClick={() => router.push("/get-started")}
+        >
+          Get Started
+        </Button>
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
@@ -79,15 +85,17 @@ export default function Header() {
               </NavLink>
             ))}
 
-            <Link href="/get-started" onClick={() => setMenuOpen(false)}>
-              <Button
-                variant="primary"
-                size="sm"
-                className="!rounded-full w-full font-medium mt-4"
-              >
-                Get Started
-              </Button>
-            </Link>
+            <Button
+              variant="primary"
+              size="sm"
+              className="!rounded-full w-full font-medium mt-4"
+              onClick={() => {
+                router.push("/get-started");
+                setMenuOpen(false);
+              }}
+            >
+              Get Started
+            </Button>
           </nav>
         </div>
       )}
