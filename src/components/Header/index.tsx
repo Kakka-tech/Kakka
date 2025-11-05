@@ -59,7 +59,9 @@ export default function Header() {
           variant="primary"
           size="sm"
           className="hidden md:block !rounded-full !text-[0.95rem] font-medium p-[16px] w-[113px] h-[45px]"
-          onClick={() => router.push("/get-started")}
+          onClick={() =>
+            window.open("https://calendly.com/kakka-tech-co/30min", "_blank")
+          }
         >
           Get Started
         </Button>
@@ -90,7 +92,10 @@ export default function Header() {
               size="sm"
               className="!rounded-full w-full font-medium mt-4"
               onClick={() => {
-                router.push("/get-started");
+                window.open(
+                  "https://calendly.com/kakka-tech-co/30min",
+                  "_blank"
+                );
                 setMenuOpen(false);
               }}
             >

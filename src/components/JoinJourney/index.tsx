@@ -20,7 +20,6 @@ export default function JoinJourney({
   title = "Join Our Journey",
   description = "Transform your business with cutting-edge digital solutions that drive real results. We don't just build websites—we architect experiences that convert, engage, and scale.",
   buttonText = "Start your project",
-  onButtonClick,
   className = "",
 }: JoinJourneyProps) {
   return (
@@ -41,9 +40,11 @@ export default function JoinJourney({
         </p>
 
         <Button
-          onClick={onButtonClick}
+          onClick={() =>
+            window.open("https://calendly.com/kakka-tech-co/30min", "_blank")
+          }
           className="mt-4 px-6 py-3 text-sm sm:text-base font-medium bg-[#4758E0] text-white
-            shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 rounded-full"
+    shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 rounded-full"
         >
           {buttonText}
         </Button>

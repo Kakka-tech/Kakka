@@ -1,6 +1,11 @@
+"use client";
+
 import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
 
 export default function HeroSection() {
+  const router = useRouter();
+
   return (
     <section className="relative w-full max-w-[1169px] h-auto mx-auto flex flex-col items-center justify-center rounded-2xl overflow-hidden bg-[url('/images/HeroBG.png')] bg-cover bg-center bg-no-repeat px-4 lg:h-[365px]">
       <div className="text-center max-w-[600px] mx-auto">
@@ -23,7 +28,10 @@ export default function HeroSection() {
           <Button
             variant="primary"
             size="md"
-            className="w-full sm:w-auto shadow-[0_18px_22px_0_rgba(200,206,252,2)]  transition-all duration-300"
+            className="w-full sm:w-auto shadow-[0_18px_22px_0_rgba(200,206,252,0.2)] transition-all duration-300"
+            onClick={() =>
+              window.open("https://calendly.com/kakka-tech-co/30min", "_blank")
+            }
           >
             Start your project
           </Button>
@@ -32,6 +40,7 @@ export default function HeroSection() {
             variant="outline"
             size="md"
             className="w-full sm:w-auto border border-[#131927] text-[#131927] hover:bg-[#131927] hover:text-white hover:shadow-md transition-all duration-300"
+            onClick={() => router.push("/portfolio")}
           >
             View Portfolio
           </Button>

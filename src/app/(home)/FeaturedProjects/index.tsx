@@ -81,7 +81,12 @@ export default function FeaturedProjects() {
         </div>
 
         <div className="flex justify-end mt-12">
-          <Button className="bg-transparent border border-white text-[#0B2EFF] font-semibold px-6 py-3hover:bg-blue-50 hover:text-black transition-colors">
+          <Button
+            className="bg-transparent border border-white text-[#0B2EFF] font-semibold px-6 py-3 hover:bg-blue-50 hover:text-black transition-colors"
+            onClick={() =>
+              window.open("https://calendly.com/kakka-tech-co/30min", "_blank")
+            }
+          >
             Start your project
           </Button>
         </div>
