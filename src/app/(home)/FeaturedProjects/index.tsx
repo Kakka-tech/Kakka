@@ -1,9 +1,13 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Button from "@/components/Button";
 
 export default function FeaturedProjects() {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const [inView, setInView] = useState(false);
+
   const projects = [
     {
       imageSrc: "/images/FintechPlatform.png",
@@ -34,9 +38,32 @@ export default function FeaturedProjects() {
     },
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect(); 
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="py-16 bg-[#4758E0] text-white">
-      <div className="max-w-6xl mx-auto px-6">
+    <section
+      ref={sectionRef}
+      className="py-16 bg-[#4758E0] text-white overflow-hidden"
+    >
+      <div
+        className={`max-w-6xl mx-auto px-6 transition-all duration-700 ${
+          inView ? "animate-fade-up" : "opacity-0 translate-y-6"
+        }`}
+      >
         <h2 className="text-3xl font-bold mb-2">Featured Projects</h2>
         <p className="text-blue-100 mb-12 max-w-xl">
           See how we’ve helped businesses transform their digital presence and
@@ -47,7 +74,11 @@ export default function FeaturedProjects() {
           {projects.map((project, idx) => (
             <div
               key={idx}
-              className="bg-white text-[#131927] rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+              className={`bg-white text-[#131927] rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-700 ${
+                inView
+                  ? `fade-up-delay-${idx + 1}`
+                  : "opacity-0 translate-y-6"
+              }`}
             >
               <div className="relative h-48 w-full">
                 <Image
@@ -80,7 +111,11 @@ export default function FeaturedProjects() {
           ))}
         </div>
 
-        <div className="flex justify-end mt-12">
+        <div
+          className={`flex justify-end mt-12 transition-all duration-700 ${
+            inView ? "animate-fade-up fade-up-delay-4" : "opacity-0 translate-y-6"
+          }`}
+        >
           <Button
             className="bg-transparent border border-white text-[#0B2EFF] font-semibold px-6 py-3 hover:bg-blue-50 hover:text-black transition-colors"
             onClick={() =>

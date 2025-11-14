@@ -15,7 +15,7 @@ export default function SectionIntro({
 }: SectionIntroProps) {
   return (
     <div className={`px-6 text-center ${className}`}>
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#131927] mb-4">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl text-[#131927] mb-4 font-manrope">
         {title}
       </h2>
 

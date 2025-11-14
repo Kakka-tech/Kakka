@@ -1,48 +1,94 @@
 "use client";
 
-import { Users, Star, Gauge } from "lucide-react";
+import Image from "next/image";
+import React from "react";
 
-const features = [
-  {
-    icon: <Users className="w-6 h-6 text-[#4758E0]" />,
-    title: "Expert Team",
-    description: "Seasoned professionals with decades of combined experience",
-  },
-  {
-    icon: <Star className="w-6 h-6 text-[#28A745]" />,
-    title: "Proven Result",
-    description: "Track record of delivering measurable business growth",
-  },
-  {
-    icon: <Gauge className="w-6 h-6 text-[#4758E0]" />,
-    title: "Fast Delivery",
-    description: "Agile methodology ensures rapid, iterative development",
-  },
-];
+type CardItem = {
+  title: string;
+  description: string;
+  icon: string;
+};
 
-export default function WhyChooseSection() {
+export default function WhyChooseKakka() {
+  const items: CardItem[] = [
+    {
+      title: "Fast Delivery",
+      description: "Agile methodology ensures rapid, iterative development",
+      icon: "/icons/fastdelivery.png",
+    },
+    {
+      title: "Expert Team",
+      description: "Seasoned professionals with decades of combined experience",
+      icon: "/icons/excellence.png",
+    },
+    {
+      title: "Proven Result",
+      description: "Track record of delivering measurable business growth",
+      icon: "/icons/provenresult.png",
+    },
+  ];
+
   return (
-    <section className="py-16 px-6 md:px-12 max-w-6xl mx-auto">
-      <h2 className="text-3xl font-bold text-[#131927] mb-10 text-left">
+    <section className="w-full px-[100px] py-20 max-lg:px-16 max-md:px-10 max-sm:px-6">
+      <h2 className="text-[28px] font-bold text-[#131927] font-[Manrope] mb-10 max-md:text-[24px] text-center md:text-left">
         Why Choose Kakka?
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {features.map((feature, index) => (
-          <div
-            key={index}
-            className="flex flex-col gap-3 p-6 border border-[#E0E0E0] rounded-2xl hover:shadow-[0_8px_20px_rgba(71,88,224,0.08)] hover:border-[#4758E0]/30 transition-all duration-300"
-          >
-            <div>{feature.icon}</div>
-            <h3 className="text-lg font-semibold text-[#131927]">
-              {feature.title}
-            </h3>
-            <p className="text-sm text-[#394050] leading-relaxed">
-              {feature.description}
-            </p>
+      <div className="flex flex-col items-center gap-10">
+        <div className="w-full max-w-[400px] max-md:max-w-[350px] max-sm:max-w-[300px]">
+          <Card item={items[0]} large />
+        </div>
+        <div className="flex flex-col md:flex-row md:justify-center md:items-start gap-10 md:gap-16 lg:gap-[20rem] w-full flex-wrap">
+          <div className="flex-1 min-w-[250px] max-w-[387px]">
+            <Card item={items[1]} />
           </div>
-        ))}
+          <div className="flex-1 min-w-[250px] max-w-[387px]">
+            <Card item={items[2]} />
+          </div>
+        </div>
       </div>
     </section>
+  );
+}
+
+function Card({ item, large }: { item: CardItem; large?: boolean }) {
+  return (
+    <div
+      className="
+        rounded-[20px]
+        border-[12px] 
+        border-white 
+        p-[28px] 
+        flex flex-col 
+        items-center 
+        gap-8
+        bg-[linear-gradient(206deg,#EFEFEF_28.45%,#DFE4FA_83.74%)]
+        shadow-sm
+        w-full
+      "
+    >
+      <Image
+        src={item.icon}
+        alt={item.title}
+        width={large ? 260 : 180}
+        height={large ? 260 : 180}
+        className="
+          object-contain 
+          pointer-events-none
+          max-lg:w-[75%]   
+          max-md:w-[70%]
+          max-sm:w-[60%] 
+        "
+      />
+
+      <div className="text-center">
+        <h3 className="font-semibold text-[#131927] text-[17px] max-md:text-[16px] max-sm:text-[15px]">
+          {item.title}
+        </h3>
+        <p className="text-[14px] text-[#394050] mt-1 leading-relaxed max-w-[240px] mx-auto max-md:text-[13px]">
+          {item.description}
+        </p>
+      </div>
+    </div>
   );
 }

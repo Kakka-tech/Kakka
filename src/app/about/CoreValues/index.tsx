@@ -1,55 +1,101 @@
 "use client";
 
-import { Lightbulb, Target, Star, Users } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
-const values = [
-  {
-    icon: <Lightbulb className="w-6 h-6 text-[#4758E0]" />,
-    title: "Innovation",
-    description: "Pushing boundaries with cutting-edge solutions",
-  },
-  {
-    icon: <Target className="w-6 h-6 text-[#4758E0]" />,
-    title: "Dedication",
-    description: "Committed to your success every step of the way",
-  },
-  {
-    icon: <Star className="w-6 h-6 text-[#4758E0]" />,
-    title: "Excellence",
-    description: "Delivering quality that exceeds expectations",
-  },
-  {
-    icon: <Users className="w-6 h-6 text-[#4758E0]" />,
-    title: "Collaboration",
-    description: "Building partnerships that last",
-  },
-];
+export default function CoreValuesSection() {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const [inView, setInView] = useState(false);
 
-export default function CoreValues() {
+  const values = [
+    {
+      title: "Innovation",
+      description: "Pushing boundaries with cutting-edge solutions",
+      icon: "/icons/innovation.png",
+    },
+    {
+      title: "Dedication",
+      description: "Committed to your success every step of the way",
+      icon: "/icons/dedication.png",
+    },
+    {
+      title: "Excellence",
+      description: "Delivering quality that exceeds expectations",
+      icon: "/icons/excellence.png",
+    },
+    {
+      title: "Collaboration",
+      description: "Building partnerships that last",
+      icon: "/icons/collaboration.png",
+    },
+  ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect(); 
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="max-w-6xl text-left mx-auto px-6 mt-20">
-      <h2 className="text-[2.5rem] font-bold text-[#131927] mb-3">
-        Core Values
-      </h2>
-      <p className="text-[#394050] text-left text-lg max-w-2xl mb-12">
-        To empower businesses with innovative digital solutions that drive
-        sustainable growth and create meaningful connections with their
-        audiences.
-      </p>
+    <section
+      ref={sectionRef}
+      className="w-full px-[127px] py-20 flex flex-col gap-10 max-md:px-6"
+    >
+      <div>
+        <h2 className="text-[28px] font-bold text-[#131927] font-[Manrope]">
+          Core Values
+        </h2>
+        <p className="mt-2 text-[15px] text-[#394050] max-w-2xl">
+          We empower businesses with innovative digital solutions that drive
+          sustainable growth and meaningful connections.
+        </p>
+      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {values.map((value, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {values.map((value, idx) => (
           <div
-            key={index}
-            className="border border-[#E0E0E0] rounded-xl p-6 text-left hover:shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-shadow duration-300"
+            key={idx}
+            className={`bg-white rounded-3xl p-2 flex justify-center items-center transition-all duration-500
+              ${inView ? (idx < 2 ? "animate-slide-left" : "animate-slide-right") : "opacity-0 translate-y-6"} 
+              ${inView ? `fade-delay-${idx + 1}` : ""}`}
           >
-            <div className="mb-4">{value.icon}</div>
-            <h3 className="font-semibold text-lg text-[#131927] mb-2">
-              {value.title}
-            </h3>
-            <p className="text-[#555] text-sm leading-relaxed">
-              {value.description}
-            </p>
+            <div
+              className="relative rounded-2xl p-10 flex flex-col justify-end h-[400px] w-full 
+                         overflow-hidden border-none
+                         bg-[linear-gradient(167deg,rgba(239,239,239,0)_32.05%,#DFE4FA_93.44%)]
+                         backdrop-blur-md 
+                         hover:shadow-[0_8px_30px_rgba(0,0,0,0.05)] 
+                         transition-all duration-300"
+            >
+              <div className="absolute inset-0 pointer-events-none" />
+
+              <div className="flex justify-center mb-6">
+                <Image
+                  src={value.icon}
+                  alt={value.title}
+                  width={220}
+                  height={220}
+                  className="object-contain"
+                />
+              </div>
+
+              <h3 className="font-semibold text-[#131927] text-[18px]">
+                {value.title}
+              </h3>
+              <p className="text-[15px] text-[#394050] mt-1 leading-relaxed max-w-[90%]">
+                {value.description}
+              </p>
+            </div>
           </div>
         ))}
       </div>

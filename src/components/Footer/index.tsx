@@ -54,9 +54,9 @@ export default function Footer() {
                   kakka.tech.co@gmail.com
                 </a>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 py-5 lg:py-0 md:py-0">
                 <Phone size={16} />
-                <span>+(234)7030085246</span>
+                <span>+(234)-805-466-6781</span>
               </div>
             </div>
 

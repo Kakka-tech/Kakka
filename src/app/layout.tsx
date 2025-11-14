@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kakka",
+  title: "Kakka | Your growth partner",
   description: "Kakka — Creative digital solutions for modern businesses",
   icons: {
     icon: "/favicon.ico",

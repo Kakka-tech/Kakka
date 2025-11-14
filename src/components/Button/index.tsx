@@ -27,7 +27,12 @@ export default function Button({
   };
 
   const variantStyles = {
-    primary: "bg-[#4758E0] text-white hover:bg-[#3848c9]",
+    primary: clsx(
+      "text-white",
+      "bg-[#4758E0]",
+      "shadow-[inset_0_-4px_10px_0_rgba(0,0,0,0.15),inset_0_8px_10px_0_rgba(244,244,244,0.35)]",
+      "hover:bg-[#3848c9]"
+    ),
     outline:
       "border border-[#4758E0] text-[#4758E0] bg-transparent hover:bg-[#4758E0] hover:text-white",
     ghost:

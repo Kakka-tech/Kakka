@@ -1,6 +1,13 @@
 import WhatWeOffer from "./WhatWeOffer";
 import ServicesOverview from "./ServicesOverview";
 import JoinJourney from "@/components/JoinJourney";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Service | Kakka",
+  description:
+    "Explore the premium digital services offered by Kakka — Web Development, UI/UX Design, Branding, and Growth Strategy built for modern businesses.",
+};
 
 export default function HomePage() {
   return (

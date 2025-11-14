@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import SectionIntro from "@/components/SectionInfoProps";
+import { useEffect, useRef, useState } from "react";
 
 interface PortfolioItem {
   category: string;
@@ -39,8 +40,27 @@ const portfolioData: PortfolioItem[] = [
 ];
 
 export default function PortfolioProjects() {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="max-w-6xl mx-auto px-6">
+    <section ref={sectionRef} className="max-w-6xl mx-auto px-6">
       <SectionIntro
         title="Our Portfolio"
         subtitle="Explore our collection of successful projects that showcase our expertise in delivering high-quality digital solutions that drive real business results."
@@ -50,7 +70,8 @@ export default function PortfolioProjects() {
         {portfolioData.map((item, index) => (
           <div
             key={index}
-            className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden"
+            className={`bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden
+              ${inView ? `animate-slide-up fade-delay-${index + 1}` : "opacity-0 translate-y-6"}`}
           >
             <div className="relative w-full h-52">
               <Image
@@ -71,9 +92,7 @@ export default function PortfolioProjects() {
               <p className="text-[#131927] text-sm leading-relaxed mb-3">
                 {item.description}
               </p>
-              <p className="text-[#43b75d] font-semibold text-sm">
-                {item.metric}
-              </p>
+              <p className="text-[#43b75d] font-semibold text-sm">{item.metric}</p>
             </div>
           </div>
         ))}
