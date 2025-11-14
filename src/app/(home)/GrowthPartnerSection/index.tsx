@@ -12,25 +12,25 @@ export default function GrowthPartnerSection() {
       title: "Web Development",
       description:
         "Custom websites and web applications built with cutting-edge technology.",
-      icon: "/images/webdev.png",
+      icon: "/icons/webdev.png",
     },
     {
       title: "UI/UX Designer",
       description:
         "Beautiful, intuitive interfaces that users love and convert.",
-      icon: "/images/uiux.png",
+      icon: "/icons/uiux.png",
     },
     {
       title: "Growth Strategy",
       description:
         "Data-driven strategies that scale your business exponentially.",
-      icon: "/images/growth.png",
+      icon: "/icons/growth.png",
     },
     {
       title: "Performance",
       description:
         "Lightning-fast solutions optimized for maximum impact.",
-      icon: "/images/performance.png",
+      icon: "/icons/performance.png",
     },
   ];
 
