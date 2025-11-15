@@ -19,7 +19,7 @@ export default function WhyChooseKakka() {
     {
       title: "Expert Team",
       description: "Seasoned professionals with decades of combined experience",
-      icon: "/icons/excellence.png",
+      icon: "/icons/expertteam.png",
     },
     {
       title: "Proven Result",
