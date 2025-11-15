@@ -51,7 +51,7 @@ export default function Footer() {
                   href="mailto:kakka.tech.co@gmail.com"
                   className="hover:underline"
                 >
-                  kakka.tech.co@gmail.com
+                  contact@kakkatech.com
                 </a>
               </div>
               <div className="flex items-center gap-2 py-5 lg:py-0 md:py-0">
@@ -123,7 +123,7 @@ export default function Footer() {
         <div className="border-t border-gray-200">
           <div className="text-center py-4 text-gray-600 text-xs">
             © {new Date().getFullYear()}{" "}
-            <span className="font-semibold">KAKKA</span>. All rights reserved. ·{" "}
+            <span className="font-semibold">Kakka Technologies</span>. All rights reserved. ·{" "}
             <a
               href="/legal-notice"
               className="underline hover:text-gray-800 transition"
