@@ -48,7 +48,7 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 <Mail size={16} />
                 <a
-                  href="mailto:kakka.tech.co@gmail.com"
+                  href="mailto:contact@kakkatech.com"
                   className="hover:underline"
                 >
                   contact@kakkatech.com
