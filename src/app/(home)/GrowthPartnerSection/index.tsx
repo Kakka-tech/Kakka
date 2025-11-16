@@ -30,7 +30,7 @@ export default function GrowthPartnerSection() {
       title: "Performance",
       description:
         "Lightning-fast solutions optimized for maximum impact.",
-      icon: "/icons/performance.png",
+      icon: "/icons/fastdelivery.png",
     },
   ];
 
