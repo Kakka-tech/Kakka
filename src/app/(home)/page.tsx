@@ -10,14 +10,18 @@ export default function HomePage() {
   return (
     <div>
       <Loader />
+      <h1 className="sr-only">
+        Kakka — Website Design, Branding & Digital Growth Agency in Nigeria
+      </h1>
+
       <HeroSection />
       <GrowthPartnerSection />
       <FeaturedProjects />
       <WhyChooseSection />
       <TestimonialsSection />
       <JoinJourney />
-
     </div>
   );
 }
+
 

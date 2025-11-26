@@ -15,10 +15,51 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kakka | Your growth partner",
-  description: "Kakka — Creative digital solutions for modern businesses",
+  metadataBase: new URL("https://kakkatech.com"),
+  title: {
+    default: "Kakka — Website Design, Branding & Digital Growth",
+    template: "%s | Kakka",
+  },
+  description:
+    "Kakka is a digital agency providing website design, development, branding and growth solutions for businesses. Fast delivery, modern UI, and proven results.",
+
+  keywords: [
+    "Kakka",
+    "Kakkatech",
+    "website design Nigeria",
+    "web development agency",
+    "branding agency",
+    "digital marketing Nigeria",
+    "business websites",
+  ],
+
   icons: {
     icon: "/favicon.ico",
+    shortcut: "/favicon.png",
+    apple: "/apple-touch-icon.png",
+  },
+
+  openGraph: {
+    title: "Kakka — Website Design & Digital Growth Agency",
+    description: "We build modern websites, branding and digital experiences.",
+    url: "https://kakkatech.com",
+    siteName: "Kakka",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Kakka — Your Growth Partner",
+    description: "Creative digital solutions for modern businesses.",
+    images: ["/og-image.png"],
   },
 };
 
