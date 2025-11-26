@@ -107,7 +107,7 @@ export default function ContactPage() {
                     href="mailto:kakka.tech.co@gmail.com"
                     className="text-base text-[#4D5461] hover:underline"
                   >
-                    kakka.tech.co@gmail.com
+                    contact@kakkatech.com
                   </a>
                 </div>
               </div>
