@@ -7,8 +7,8 @@ export default function HeroSection() {
   const router = useRouter();
 
   return (
-    <section className="relative w-full max-w-[1169px] h-auto mx-auto flex flex-col items-center justify-center rounded-2xl overflow-hidden bg-[url('/images/HeroBG.png')] bg-cover bg-center bg-no-repeat px-4 lg:h-[365px]">
-      <div className="text-center max-w-[600px] mx-auto">
+    <section className="relative w-full max-w-292.25 h-auto mx-auto flex flex-col items-center justify-center rounded-2xl overflow-hidden bg-[url('/images/HeroBG.png')] bg-cover bg-center bg-no-repeat px-4 lg:h-91.25">
+      <div className="text-center max-w-150 mx-auto">
         <span className="text-xs sm:text-sm text-[#4758E0] bg-[#edeffe] px-4 py-1 rounded-full mb-4 inline-block shadow-[0_2px_6px_0_#edeffe] fade-up fade-up-delay-1">
           Welcome to the future
         </span>
@@ -18,7 +18,7 @@ export default function HeroSection() {
           <br className="hidden sm:block" /> We Build Growth Engines
         </h1>
 
-        <p className="text-[#555] text-sm sm:text-base max-w-[500px] mx-auto mb-6 px-2 fade-up fade-up-delay-2">
+        <p className="text-[#555] text-sm sm:text-base max-w-125 mx-auto mb-6 px-2 fade-up fade-up-delay-2">
           Transform your business with cutting-edge digital solutions that drive
           real results. We don’t just build websites—we architect experiences
           that convert, engage, and scale.
