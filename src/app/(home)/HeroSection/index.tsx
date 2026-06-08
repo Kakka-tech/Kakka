@@ -7,7 +7,7 @@ export default function HeroSection() {
   const router = useRouter();
 
   return (
-    <section className="relative w-full max-w-292.25 h-auto mx-auto flex flex-col items-center justify-center rounded-2xl overflow-hidden bg-[url('/images/HeroBG.png')] bg-cover bg-center bg-no-repeat px-4 lg:h-91.25">
+    <section className=" py-10 relative w-full max-w-292.25 h-auto mx-auto flex flex-col items-center justify-center rounded-2xl overflow-hidden bg-[url('/images/HeroBG.png')] bg-cover bg-center bg-no-repeat px-4 lg:h-91.25">
       <div className="text-center max-w-150 mx-auto">
         <span className="text-xs sm:text-sm text-[#4758E0] bg-[#edeffe] px-4 py-1 rounded-full mb-4 inline-block shadow-[0_2px_6px_0_#edeffe] fade-up fade-up-delay-1">
           Welcome to the future

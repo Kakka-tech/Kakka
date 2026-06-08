@@ -14,7 +14,7 @@ export default function Footer() {
               <Logo className="w-28 h-auto" />
             </Link>
 
-            <p className="text-gray-700 text-sm leading-relaxed max-w-[260px]">
+            <p className="text-gray-700 text-sm leading-relaxed max-w-65">
               Beyond Websites. We Build Growth Engines.
             </p>
 
@@ -44,7 +44,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col md:flex-row justify-between gap-10 flex-1">
-            <div className="flex flex-col gap-3 text-gray-700 text-sm relative top-[2.5rem]">
+            <div className="flex flex-col gap-3 text-gray-700 text-sm relative top-10">
               <div className="flex items-center gap-2">
                 <Mail size={16} />
                 <a
@@ -56,7 +56,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2 py-5 lg:py-0 md:py-0">
                 <Phone size={16} />
-                <span>+(234)-805-466-6781</span>
+                <span>+(234)-703-008-5246</span>
               </div>
             </div>
 

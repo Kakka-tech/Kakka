@@ -27,7 +27,7 @@ export default function AboutSection() {
   return (
     <section
       ref={sectionRef}
-      className="max-w-6xl mx-auto px-6 text-center"
+      className="max-w-6xl mx-auto px-6 text-center py-10"
     >
       <SectionIntro
         title="About Kakka"
@@ -68,7 +68,7 @@ export default function AboutSection() {
             alt="Our story image"
             width={500}
             height={500}
-            className="w-full h-[220px] sm:h-[260px] lg:h-[340px] object-cover rounded-lg"
+            className="w-full h-55 sm:h-65 lg:h-85 object-cover rounded-lg"
           />
         </div>
       </div>
