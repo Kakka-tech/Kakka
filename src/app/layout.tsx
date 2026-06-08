@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-// @ts-expect-error: CSS import resolution fix for TS compiler
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
