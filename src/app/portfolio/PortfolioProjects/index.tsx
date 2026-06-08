@@ -44,22 +44,42 @@ const portfolioData = [
 
 const TOTAL = portfolioData.length;
 
+const CARD = {
+  mobile: { w: 300, h: 380, imgH: 180 },
+  tablet: { w: 400, h: 420, imgH: 210 },
+  desktop: { w: 500, h: 460, imgH: 240 },
+};
+
 export default function PortfolioProjects() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const [inView, setInView] = useState(false);
   const [current, setCurrent] = useState(0);
+  const [cardSize, setCardSize] = useState(CARD.desktop);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Responsive card size
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      setCardSize(
+        w < 480 ? CARD.mobile
+        : w < 768 ? CARD.tablet
+        : CARD.desktop,
+      );
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const clearAutoplay = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
   };
-
   const startAutoplay = () => {
     clearAutoplay();
     intervalRef.current = setInterval(() => {
-      if (document.visibilityState === "visible") {
+      if (document.visibilityState === "visible")
         setCurrent((c) => (c + 1) % TOTAL);
-      }
     }, 3000);
   };
 
@@ -87,6 +107,7 @@ export default function PortfolioProjects() {
     startAutoplay();
   };
 
+  // Drag / swipe
   const dragStartX = useRef(0);
   const dragX = useRef(0);
   const wasDrag = useRef(false);
@@ -98,13 +119,11 @@ export default function PortfolioProjects() {
     dragX.current = 0;
     wasDrag.current = false;
   };
-
   const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (e.buttons === 0) return;
     dragX.current = e.clientX - dragStartX.current;
     if (Math.abs(dragX.current) > 8) wasDrag.current = true;
   };
-
   const onPointerUp = () => {
     if (wasDrag.current) {
       if (dragX.current < -50) goTo(currentRef.current + 1);
@@ -117,11 +136,9 @@ export default function PortfolioProjects() {
   const handleCardClick = (idx: number) => {
     if (wasDrag.current) return;
     const offset = getOffset(idx);
-    if (offset === 0) {
+    if (offset === 0)
       window.open(portfolioData[idx].url, "_blank", "noopener,noreferrer");
-    } else {
-      goTo(idx);
-    }
+    else goTo(idx);
   };
 
   const getOffset = (idx: number) => {
@@ -131,10 +148,12 @@ export default function PortfolioProjects() {
     return d;
   };
 
+  const trackHeight = cardSize.h + 60;
+
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-[#4758E0] text-white"
+      className="py-16 sm:py-20 bg-[#4758E0] text-white"
       style={{ overflow: "hidden" }}
     >
       <style>{`
@@ -159,36 +178,36 @@ export default function PortfolioProjects() {
         .pf-float { animation: pfFloat 4s ease-in-out infinite; }
       `}</style>
 
-      {/* Header */}
+      {/* ── Header ── */}
       <div
-        className={`max-w-6xl mx-auto px-8 transition-all duration-700 ${
+        className={`max-w-6xl mx-auto px-6 sm:px-8 transition-all duration-700 ${
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-14">
           <div>
             <span className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase text-blue-200 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-white inline-block opacity-60" />
               Our portfolio
             </span>
             <h2
-              className="text-[34px] font-bold leading-tight tracking-tight"
+              className="text-[28px] sm:text-[34px] font-bold leading-tight tracking-tight"
               style={{ fontFamily: "Manrope, sans-serif" }}
             >
               Our Portfolio
             </h2>
-            <p className="text-blue-100 mt-2 max-w-md text-[15px] leading-relaxed">
+            <p className="text-blue-100 mt-2 max-w-md text-[14px] sm:text-[15px] leading-relaxed">
               Explore our collection of successful projects that showcase our
               expertise in delivering high-quality digital solutions.
             </p>
           </div>
 
-          {/* Nav */}
+          {/* Nav arrows + counter */}
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={() => goTo(current - 1)}
               aria-label="Previous"
-              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 active:scale-95 transition-all"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 active:scale-95 transition-all"
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path
@@ -203,7 +222,7 @@ export default function PortfolioProjects() {
             <button
               onClick={() => goTo(current + 1)}
               aria-label="Next"
-              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 active:scale-95 transition-all"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 active:scale-95 transition-all"
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path
@@ -215,7 +234,7 @@ export default function PortfolioProjects() {
                 />
               </svg>
             </button>
-            <span className="text-[13px] text-blue-200 ml-1 tabular-nums">
+            <span className="text-[12px] sm:text-[13px] text-blue-200 ml-1 tabular-nums">
               {String(current + 1).padStart(2, "0")} /{" "}
               {String(TOTAL).padStart(2, "0")}
             </span>
@@ -223,11 +242,11 @@ export default function PortfolioProjects() {
         </div>
       </div>
 
-      {/* 3D Carousel */}
+      {/* ── 3D Carousel ── */}
       <div
-        className="relative select-none"
+        className="relative select-none touch-pan-y"
         style={{
-          height: 500,
+          height: trackHeight,
           perspective: "1400px",
           perspectiveOrigin: "50% 40%",
         }}
@@ -241,10 +260,11 @@ export default function PortfolioProjects() {
           const abs = Math.abs(offset);
           const isVisible = abs <= 1;
 
+          const sideNudge = cardSize.w * 0.92;
           const rotateY = offset * -44;
-          const translateX = offset * 46;
+          const translateXpx = offset * sideNudge;
           const translateZ = isActive ? 90 : -110 - abs * 30;
-          const scale = isActive ? 1 : 0.8;
+          const scale = isActive ? 1 : 0.82;
           const opacity =
             isActive ? 1
             : abs === 1 ? 0.5
@@ -259,10 +279,10 @@ export default function PortfolioProjects() {
                 isActive ? "pf-shimmer pf-float" : ""
               }`}
               style={{
-                width: 500,
-                height: 460,
-                marginLeft: -250,
-                transform: `translateX(${translateX}%) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+                width: cardSize.w,
+                height: cardSize.h,
+                marginLeft: -(cardSize.w / 2),
+                transform: `translateX(${translateXpx}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
                 transformStyle: "preserve-3d",
                 opacity,
                 zIndex,
@@ -281,7 +301,7 @@ export default function PortfolioProjects() {
               {/* Image */}
               <div
                 className="relative w-full overflow-hidden"
-                style={{ height: 240 }}
+                style={{ height: cardSize.imgH }}
               >
                 <Image
                   src={item.image}
@@ -303,11 +323,9 @@ export default function PortfolioProjects() {
                       "linear-gradient(to top, rgba(255,255,255,0.5), transparent)",
                   }}
                 />
-                {/* Category badge */}
                 <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[#4758E0] text-[11px] font-semibold px-3 py-1 rounded-full tracking-wide">
                   {item.category}
                 </span>
-                {/* External link — active only */}
                 {isActive && (
                   <span className="absolute top-3 right-3 w-7 h-7 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-sm">
                     <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
@@ -324,22 +342,22 @@ export default function PortfolioProjects() {
               </div>
 
               {/* Content */}
-              <div className="p-6 flex flex-col gap-2 text-[#131927]">
+              <div className="p-4 sm:p-6 flex flex-col gap-1.5 text-[#131927]">
                 <h3
-                  className="text-[18px] font-bold tracking-tight truncate"
+                  className="text-[15px] sm:text-[18px] font-bold tracking-tight truncate"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   {item.title}
                 </h3>
-                <p className="text-[13.5px] text-[#394050] leading-relaxed line-clamp-2">
+                <p className="text-[12px] sm:text-[13.5px] text-[#394050] leading-relaxed line-clamp-2">
                   {item.description}
                 </p>
-                <div className="flex items-center gap-2 mt-4">
+                <div className="flex items-center gap-2 mt-3 sm:mt-4">
                   <span
                     className="w-2 h-2 rounded-full bg-[#43B75D] shrink-0"
                     style={{ boxShadow: "0 0 8px rgba(67,183,93,0.7)" }}
                   />
-                  <p className="text-[13px] font-semibold text-[#43B75D]">
+                  <p className="text-[12px] sm:text-[13px] font-semibold text-[#43B75D]">
                     {item.metric}
                   </p>
                 </div>
@@ -349,9 +367,9 @@ export default function PortfolioProjects() {
         })}
       </div>
 
-      {/* Dots */}
-      <div className="max-w-6xl mx-auto px-8 mt-8">
-        <div className="flex justify-center gap-2 mb-10">
+      {/* ── Dots ── */}
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 mt-6 sm:mt-8">
+        <div className="flex justify-center gap-2 mb-8 sm:mb-10">
           {portfolioData.map((_, idx) => (
             <button
               key={idx}

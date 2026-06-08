@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+// @ts-expect-error: CSS import resolution fix for TS compiler
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -74,7 +75,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#F9FAFB] text-[#131927]`}
       >
         <Header />
-        <main className="py-10 bg-white">{children}</main>
+        <main className="bg-white">{children}</main>
         <Footer />
       </body>
     </html>

@@ -24,7 +24,7 @@ export default function WhatWeOffer() {
   };
 
   return (
-    <section className="max-w-6xl mx-auto px-6">
+    <section className="max-w-6xl mx-auto px-6 py-10">
       <SectionIntro
         title="Our Services"
         subtitle="Comprehensive digital solutions tailored to your unique business needs. We combine strategy, design, and technology to deliver exceptional results."
@@ -60,7 +60,7 @@ export default function WhatWeOffer() {
 
         <div className="flex-1 w-full fade-up delay-1">
           <div
-            className="w-full h-[220px] md:h-[260px] relative rounded-xl overflow-hidden bg-gray-200 cursor-pointer group"
+            className="w-full h-55 md:h-65 relative rounded-xl overflow-hidden bg-gray-200 cursor-pointer group"
             onClick={handleExpand}
           >
             <video
@@ -84,11 +84,11 @@ export default function WhatWeOffer() {
 
       {isExpanded && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center backdrop-blur-md bg-black/60 transition-all duration-300"
+          className="fixed inset-0 z-100 flex items-center justify-center backdrop-blur-md bg-black/60 transition-all duration-300"
           onClick={handleClose}
         >
           <div
-            className="relative w-[95%] max-w-[1000px] aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black"
+            className="relative w-[95%] max-w-250 aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black"
             onClick={(e) => e.stopPropagation()}
           >
             <video
